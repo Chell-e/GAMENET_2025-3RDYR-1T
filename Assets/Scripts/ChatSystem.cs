@@ -16,6 +16,9 @@ public class ChatSystem : NetworkBehaviour
     [SerializeField]
     TextMeshProUGUI chatText;
 
+    [SyncVar]
+    public string playerName;
+
     public static Action<string> onSendMessage;
 
     public override void OnStartAuthority()
@@ -37,17 +40,17 @@ public class ChatSystem : NetworkBehaviour
         if (Input.GetKeyDown(KeyCode.Return) && !string.IsNullOrWhiteSpace(inputField.text))
         {
             var pc = GetComponent<PlayerController>();
-            string senderName = pc.playerName;
+            //string senderName = pc.playerName;
 
-            CmdSendMessage(senderName, inputField.text);
+            CmdSendMessage(inputField.text);
             inputField.text = "";
         }
     }
 
     [Command]
-    private void CmdSendMessage(string name, string message)
+    private void CmdSendMessage(string message)
     {
-        RpcSendMessage($"\n {name}: {message}");
+        RpcSendMessage($"\n {playerName}: {message}");
     }
 
     [ClientRpc]

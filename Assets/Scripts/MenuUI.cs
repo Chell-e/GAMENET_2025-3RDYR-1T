@@ -4,16 +4,16 @@ using UnityEngine;
 
 public class MenuUI : MonoBehaviour
 {
-    [SerializeField]
-    TMPro.TMP_InputField inputField;
+    //[SerializeField]
+    //TMPro.TMP_InputField inputField;
 
-    public static string chosenName = "";
+    //public static string chosenName = "";
 
-    public void OnConfirmName()
-    {
-        if (!string.IsNullOrWhiteSpace(inputField.text))
-        {
-            chosenName = inputField.text;
-        }
-    }
+    //public void OnConfirmName()
+    //{
+    //    if (!string.IsNullOrWhiteSpace(inputField.text))
+    //    {
+    //        chosenName = inputField.text;
+    //    }
+    //}
 }

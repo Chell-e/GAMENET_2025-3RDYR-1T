@@ -14,7 +14,7 @@ public class PlayerController : NetworkBehaviour
     public override void OnStartLocalPlayer()
     {
         base.OnStartLocalPlayer();
-        CmdSetName(MenuUI.chosenName);
+        //CmdSetName(MenuUI.chosenName);
     }
 
     // Start is called before the first frame update
@@ -68,9 +68,9 @@ public class PlayerController : NetworkBehaviour
         onGround= false;
     }
 
-    [Command]
-    void CmdSetName(string name)
-    {
-        playerName = name;
-    }
+    //[Command]
+    //void CmdSetName(string name)
+    //{
+    //    playerName = name;
+    //}
 }

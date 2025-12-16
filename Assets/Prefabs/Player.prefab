@@ -174,7 +174,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: 0fb08ea3f9108da4b8394486e8cde6d6, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -929,7 +929,7 @@ GameObject:
   - component: {fileID: 5305640981233594590}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1108,3 +1108,4 @@ MonoBehaviour:
   chatCanvas: {fileID: 482927465994018442}
   inputField: {fileID: 1439616673928235733}
   chatText: {fileID: 7166278023584608911}
+  playerName: 
