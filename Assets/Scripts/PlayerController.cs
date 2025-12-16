@@ -8,6 +8,15 @@ public class PlayerController : NetworkBehaviour
     Rigidbody2D rb;
     bool onGround;
 
+    [SyncVar]
+    public string playerName;
+
+    public override void OnStartLocalPlayer()
+    {
+        base.OnStartLocalPlayer();
+        CmdSetName(MenuUI.chosenName);
+    }
+
     // Start is called before the first frame update
     void Start()
     {
@@ -31,24 +40,22 @@ public class PlayerController : NetworkBehaviour
         if (!isLocalPlayer) return;
 
         float movement = Input.GetAxis("Horizontal");
-        rb.velocity = new Vector2(movement * 5, rb.velocity.y);
+        rb.velocity = new Vector2(movement * 5f, rb.velocity.y);
 
         if (Input.GetKeyDown(KeyCode.Space) && onGround)
         {
-            rb.AddForce(Vector2.up * 10, ForceMode2D.Impulse);
+            rb.AddForce(Vector2.up * 10f, ForceMode2D.Impulse);
         }
 
-        if (Input.GetKeyDown(KeyCode.O))
-        {
-            CmdSendMessage("Hi!");
-        }
+        float x = Mathf.Clamp(transform.position.x, -8.5f, 8.5f);
+        transform.position = new Vector3(x, transform.position.y, transform.position.z);
     }
 
     void OnCollisionEnter2D(Collision2D collision)
     {
         foreach(var contact in collision.contacts)
         {
-            if (contact.normal.y > 0.5)
+            if (contact.normal.y > 0.5f)
             {
                 onGround = true;
                 break;
@@ -62,14 +69,8 @@ public class PlayerController : NetworkBehaviour
     }
 
     [Command]
-    void CmdSendMessage(string message)
+    void CmdSetName(string name)
     {
-        RpcSendMessage(message);
-    }
-
-    [ClientRpc] //Remote Procedure Call
-    void RpcSendMessage(string message)
-    {
-        Debug.Log(message);
+        playerName = name;
     }
 }
